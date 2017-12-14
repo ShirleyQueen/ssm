@@ -70,11 +70,11 @@
     试卷ID(paperID),<br/>
     学生ID(studentID),<br/>
     总得分(totalScore),<br/>
-    记录信息(recordsInfo {<br/>
+    记录信息(recordsInfo [{<br/>
     -----------------题号(paperNum),<br/>
     -----------------答题结果(answer),<br/>
     -----------------得分(score)<br/>
-    -----------------}<br/>
+    -----------------}])<br/>
     <br/>
 </div>
 <br/>
