@@ -182,6 +182,16 @@
             <version>2.0.2.RELEASE</version>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>spring-libs-release</id>
+            <name>Spring Releases</name>
+            <url>https://repo.spring.io/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <build>
         <finalName>ssm</finalName>
         <filters>
