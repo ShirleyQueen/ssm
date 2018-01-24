@@ -3,10 +3,14 @@ package com.xpfirst.hdrRouter.Vote.PF;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.xpfirst.hdrRouter.util.DesUtils;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -29,7 +33,8 @@ public class Vote {
 //            getCode(phone+i);
 //        }
 
-        getCode(1000);
+//        getCode(1000);
+        voteToUser("123141234252345");
     }
     //发送验证码,接口有bug,获取验证码,并不需要使用
     public void getCode(int num) {
@@ -134,7 +139,7 @@ public class Vote {
         }
     }
     @Test
-    // 获取用户列表
+    // 获取用户列表并投票
     public void getUserList(){
 
         //设置一个总票数
@@ -164,26 +169,55 @@ public class Vote {
 //        String activityId = "a9cf08d46e724d8ea24d81d50cde0efd";
 
         // 北京 guyuan 90人
-        String pageNo = "1";
-        String activityId = "b9c31f70a3cd450eb8174b3a633ce477";
+//        String pageNo = "1";
+//        String activityId = "b9c31f70a3cd450eb8174b3a633ce477";
 
-        String url = "http://www.fitness-partner.cn/jianshen/f/client/serviceActivity?a=getSignList&params=%7BactivityId:%22";
-        url += activityId;
-        url += "%22,userId:%22";
-        url += "120305d43229e3789d034ae9+1";//这个数值没有作用,随便修改了一个数据
-        url += "%22,signIndustry:%22%22,searchInfo:%22%22,pageNo:%22";
-        url += pageNo;
-        url += "%22,pageSize:%2250%22%7D";
-
+        String url = "http://www.fitness-partner.cn/jianshen/ssln/client/serviceActivity?a=LvjMuqPBJRSBpRtOQNzMCw==&t=vHPVBZyKbmSHLkpgSvNxq9ss86lR5PTl7hJLb2VoNn6gwmuSqkle/w==&params=sfE3XwfDk4lBwp0N3EyOx3FYMaRJOD8V8kjUGZBqt6iPEH4x8CE0P7K2FsxEs4Zfr2N1HUma21pARinNHLOfmqT09fL49c98wob1rH2pglayrlCXJA7/KP/TdEVPuJBbnIz2gpgF5gDGIRNhngk/9ah1JqO97osfczvtdz8dWiPCZZ1/UTVN0muoT1nZ%2Bb74oMJrkqpJXv8=";
+        url += "&sign=b00dba92a7e609788ab4d8300835de08";
+        url += "&timestamp=fwOavDNuf7c2GpDt1NTBTg==";
         try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
+
+            CookieStore cookieStore = new BasicCookieStore();
+            CloseableHttpClient httpclient = HttpClients.custom()
+                    .setDefaultCookieStore(cookieStore)
+                    .build();
+
             HttpGet httppost = new HttpGet(url);
             httppost.setHeader("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9B176 MicroMessenger/6.5.15");
+
+            BasicClientCookie cookie = new BasicClientCookie("pgv_pvid",  "9147043142"
+            );
+            cookie.setVersion(0);
+            cookie.setPath("/");
+            cookie.setDomain(".www.fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie);
+
+            BasicClientCookie cookie2 = new BasicClientCookie("__qc_wId", "433");
+            cookie2.setVersion(0);
+            cookie2.setPath("/");
+            cookie2.setDomain("www.fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie2);
+
+            BasicClientCookie cookie3 = new BasicClientCookie("Hm_lpvt_a4de117bdc6f723fd866350b7dc24eb2", "1516763501");
+            cookie3.setVersion(0);
+            cookie3.setPath("/");
+            cookie3.setDomain(".fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie3);
+
+            BasicClientCookie cookie4 = new BasicClientCookie("Hm_lvt_a4de117bdc6f723fd866350b7dc24eb2", "1516755196");
+            cookie4.setVersion(0);
+            cookie4.setPath("/");
+            cookie4.setDomain(".fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie4);
+
             CloseableHttpResponse response = httpclient.execute(httppost);
 
 
             //发送Post,并返回一个HttpResponse对象
             String result = EntityUtils.toString(response.getEntity());
+            log.info("================= > result: " + result);
+            result = DesUtils.decode(result);
+            log.info("================= > result: " + result);
 
             JSONObject jObject = JSON.parseObject(result);
             Integer code = jObject.getInteger("code");
@@ -193,15 +227,15 @@ public class Vote {
                 JSONArray listArr = pageObj.getJSONArray("list");
                 for (int i = 0; i < listArr.size(); i++){
                     JSONObject tmpObj = listArr.getJSONObject(i);
-                    String signUserId = tmpObj.getString("signUserId");
+                    String signUserId = tmpObj.getString("id");
                     if (signUserId != null && allnum > 0){
                         for (int j = 0; j < 3; j++){
                             log.info("================= > 用户ID: " + signUserId);
 
-                            String tmpcode = voteToUser(signUserId);
-                            if (tmpcode.equals("0")){
-                                allnum--;
-                            }
+//                            String tmpcode = voteToUser(signUserId);
+//                            if (tmpcode.equals("0")){
+//                                allnum--;
+//                            }
                         }
                     }
                 }
@@ -210,77 +244,66 @@ public class Vote {
         } catch (IOException e) {
             e.printStackTrace();
             log.info("================= > " + e);
+        } catch (Exception e) {
+            log.info("================= E > " + e);
+            e.printStackTrace();
         }
     }
     // 投票给某人
     // voteUserId 投票人的ID
     public String voteToUser(String voteUserId){
-
         String signId = "";
 
         //被投票人的ID 李想
 //        signId = "d23672fa1c77468e8d8c55344160861c";
 
-//        //被投票人的ID 崔爽
-//         signId = "65da1388d29746dfad69e3a1ddc14465";
-
-//        //被投票人的ID 郜金丹
-//        signId = "6d01823fbec64919a27cafb6a220ec76";
-
-        // 史倍倍
-//        signId = "0bdae03cde7940e7a4b10e7b13f9753c";
-
-        // 孙欣欣
-//        signId = "7a663889925f4b469c6af96d95b29704";
-
-        //蓝大姐(朱刘芳)
-//        signId = "8852ffecc6414bfa94e2295e3c8618bb";
-        //魏莹莹
-//        signId = "87697048f1b145498d17d9d553e5cd0a";
-
-        //张文俊
-//        signId = "04af7c80246849919a6a3ee5429a1f7d";
-
-//        //陈亮
-//        signId = "18a4c17fea204e57ae2a9ab0a12f14b4";
-
-        // 吴美莹
-//        signId = "60253d760ae147c785de40ff878c3cd3";
-//        // 严辰
-//        signId = "ef32cac57c0148cbbab9a2f67fce31e1";
-//        // 谢天艺
-//        signId = "5dad40ca86024b3589587695f190b3f3";
-
-//        // 蔡锦
-        signId = "0ffdff8cf0ca4e788690be371381e2c7";
-//        // 李永豪
-//        signId = "f8846b8b45b54e5a9cabbe144f75e5b6";
-
-//        // 荆雅
-//        signId = "4f026beceb9b4116bb42dc5441a3adcd";
-
-//        // Tangu
-//        signId = "1ce4cd17f99c442584266b6dfdaf06c7";
-
-//        // 王琳
-//        signId = "9893ae2606474dc4a2fc8d4de499cdb2";
-
-
-
-
-
-        String url = "http://www.fitness-partner.cn/jianshen/f/client/serviceActivity?a=vote&params=%7BvoteUserId:%22"+voteUserId+"%22,activityId:%227ae3d9a0ea87438fa8e6b5267745ca94%22,signId:%22"+signId+"%22,voteIp:%22210.12.48.132%22%7D";
+        String url = "http://www.fitness-partner.cn/jianshen/ssln/client/serviceActivity?a=Bc6uYgfZr5Y=&t=vHPVBZyKbmSHLkpgSvNxq9ss86lR5PTl7hJLb2VoNn6gwmuSqkle/w==&timestamp=v8yavab/utcqzwm/eNK9sQ==&params=sfE3XwfDk4kJTgit3A9FQSvvWBSSgr3bbytRbvyYS%2BHTuJd9u%2B/w/rfTQ5ZxMNQmmQOynJ/weOulSlrtU14S9P2BU6NnuSAdnZSpKhPOWfkbPV54ZQDzZrnKr024WKcTNpMtlSzHEja5Tg%2BSNBz8XTy3FuV1uwhGd39Lqftj7pJTS2bHthEPpoeARPBboWD5pMmuFPpnbt/ARQthajBI3w==&sign=81fccb63035aa85158abebac214fda04";
 
 
         try {
-            CloseableHttpClient httpclient = HttpClients.createDefault();
+            CookieStore cookieStore = new BasicCookieStore();
+            CloseableHttpClient httpclient = HttpClients.custom()
+                    .setDefaultCookieStore(cookieStore)
+                    .build();
+
             HttpGet httppost = new HttpGet(url);
             httppost.setHeader("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9B176 MicroMessenger/6.5.15");
+
+            BasicClientCookie cookie = new BasicClientCookie("pgv_pvid",  "9147043142"
+            );
+            cookie.setVersion(0);
+            cookie.setPath("/");
+            cookie.setDomain(".www.fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie);
+
+            BasicClientCookie cookie2 = new BasicClientCookie("__qc_wId", "433");
+            cookie2.setVersion(0);
+            cookie2.setPath("/");
+            cookie2.setDomain("www.fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie2);
+
+            BasicClientCookie cookie3 = new BasicClientCookie("Hm_lpvt_a4de117bdc6f723fd866350b7dc24eb2", "1516763501");
+            cookie3.setVersion(0);
+            cookie3.setPath("/");
+            cookie3.setDomain(".fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie3);
+
+            BasicClientCookie cookie4 = new BasicClientCookie("Hm_lvt_a4de117bdc6f723fd866350b7dc24eb2", "1516755196");
+            cookie4.setVersion(0);
+            cookie4.setPath("/");
+            cookie4.setDomain(".fitness-partner.cn");   //设置范围
+            cookieStore.addCookie(cookie4);
+
+
+
             CloseableHttpResponse response = httpclient.execute(httppost);
 
 
             //发送Post,并返回一个HttpResponse对象
             String result = EntityUtils.toString(response.getEntity());
+            log.info("================= > result: " + result);
+            result = DesUtils.decode(result);
+            log.info("================= > result: " + result);
 
             JSONObject jObject = JSON.parseObject(result);
             log.info("================= > 结果: " + jObject.toJSONString());
@@ -294,6 +317,9 @@ public class Vote {
         } catch (IOException e) {
             e.printStackTrace();
             log.info("================= > " + e);
+        } catch (Exception e) {
+            log.info("================= >3333 " + e);
+            e.printStackTrace();
         }
         return "1";
 
