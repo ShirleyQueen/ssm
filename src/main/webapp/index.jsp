@@ -17,5 +17,18 @@
 
 <div><a href="<%=ctx%>/nunjucks/list">nunjucks</a></div>
 <div><a href="<%=ctx%>/mongodb/">mongoDB</a></div>
+<div><a href="<%=ctx%>/mysql/">mysql</a></div>
 </body>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/js/service-worker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+        }).catch(function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+</script>
 </html>

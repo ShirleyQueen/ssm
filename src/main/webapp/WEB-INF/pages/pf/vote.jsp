@@ -66,8 +66,10 @@
 
     document.cookie="pgv_pvid=9147043142;path=/; domain=.www.fitness-partner.cn";
     document.cookie="__qc_wId=433; path=/;domain=www.fitness-partner.cn";
-    document.cookie="Hm_lpvt_a4de117bdc6f723fd866350b7dc24eb2=1516763501; path=/;domain=.fitness-partner.cn";
+    document.cookie="Hm_lpvt_a4de117bdc6f723fd866350b7dc24eb2=1516790312; path=/;domain=.fitness-partner.cn";
     document.cookie="Hm_lvt_a4de117bdc6f723fd866350b7dc24eb2=1516755196; path=/;domain=.fitness-partner.cn";
+    document.cookie="Hm_lpvt_82116c626a8d504a5c0675073362ef6f=1516786200; path=/;domain=.fitness-partner.cn";
+    document.cookie="Hm_lvt_82116c626a8d504a5c0675073362ef6f=1516786008; path=/;domain=.fitness-partner.cn";
 
     var token = '';
     var sign = '';
@@ -93,11 +95,11 @@
 
     }
     //获取一次报名人员名单
-    function getUserList(id,page,rows) {
+    function getUserList(service,id,page,rows,voteUserId) {
 
-        var params='{activityId:"'+id+'",userId:"'+localStorage.userId+'",pageNo:"'+page+'",pageSize:"'+rows+'"}';
+        var params='{activityId:"'+id+'",userId:"'+voteUserId+'",pageNo:"'+page+'",pageSize:"'+rows+'"}';
 
-        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/serviceActivity?"+getparams('getSignList',params);
+        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+getparams('getSignList',params);
         console.log("url="+url);
         $.ajax({
             url:url,
@@ -126,15 +128,13 @@
     }
 
     //给一个人投票
-    function voteToUser(id,voteId,voteUserId) {
+    function voteToUser(service,id,voteId,voteUserId) {
 
         var params = '{activityId:"'+id+'",signId:"'+voteId+'",voteUserId:"'+voteUserId+'",voteIp:"193.23.4.56"}';
         console.log("params="+params);
         params = getparams('vote',params);
-//        console.log("params="+params);
+        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+params;
 
-        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/serviceActivity?"+params;
-//        console.log("url = " + url);
         $.ajax({
             url:url,
             success:function(result){
@@ -161,15 +161,64 @@
         });
     }
 
-    //获取此活动的人员列表
-//    getUserList("14b98c6caaa24d0aa90012e9f2dd2815",1,50);
 
-    //投票
-    //浪花
-    var voteId = "15dcfdda6a444773b0f25cd30b862806";
+
+
+    //给一个人投票
+    function login(service,phone,pwd) {
+
+        var params = '{phone:"'+phone+'",pwd:"'+pwd+'",deviceType:"0"}';
+        console.log("params="+params);
+        params = getparams('login',params);
+        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+params;
+
+        $.ajax({
+            url:url,
+            success:function(result){
+//                console.log(result);
+                $("#list").html(result);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+//                console.log(XMLHttpRequest.status);
+//                console.log(XMLHttpRequest.readyState);
+//                console.log(textStatus);
+
+                var responseText = XMLHttpRequest.responseText;
+//                console.log(responseText);
+
+                responseText = responseText.replace(/[\r\n]/g,'');
+                responseText = decryptByDES(responseText);
+                console.log("responseText = "+responseText);
+                //解析数据
+
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+                console.log("完事");
+            }
+        });
+    }
+
+
+
+
     //投票人
-    var voteUserId = 'dbb0cdeb5ce94b78affdd252411d1713';
-    voteToUser("4abe6d1f9d6e4b3aaefbdd75b1fb8e33",voteId,voteUserId);
+    var voteUserId = '1e0522408e0240cbb8e14dc25d034ae9';
+    //活动ID
+
+    //获取此活动的人员列表
+    var activityId = "4abe6d1f9d6e4b3aaefbdd75b1fb8e33";
+    getUserList("serviceActivity",activityId,1,50,voteUserId);
+//
+//    //被投票人
+//    //浪花
+//    var voteId = "15dcfdda6a444773b0f25cd30b862806";
+//
+//    //投票
+//    activityId = "4abe6d1f9d6e4b3aaefbdd75b1fb8e33";
+//    voteToUser("serviceActivity",activityId,voteId,voteUserId);
+
+    //登录
+//    login("service","18518763071","5211314");
 
 </script>
 </html>
