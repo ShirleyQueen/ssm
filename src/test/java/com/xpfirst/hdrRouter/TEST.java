@@ -17,10 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Copyright (C) 北京学信科技有限公司
@@ -67,7 +65,29 @@ public class TEST {
     }
 
     @Test
-    public void makeMM(){
-
+    public void checkList(){
+        List<String> tmpList = new ArrayList<String>();
+        tmpList.add("1");
+        tmpList.add("3");
+        tmpList.add("2");
+        log.info("tmpList=" + tmpList.toString());
+        Collections.sort(tmpList);
+        log.info("tmpList=" + tmpList.toString());
+//        for (String item : tmpList){
+//            log.info("item=" + item);
+//            tmpList.remove(item);
+//        }
+    }
+    @Test
+    public void checkList2(){
+        CopyOnWriteArrayList<String> tmpList = new CopyOnWriteArrayList<String>();
+        tmpList.add("1");
+        tmpList.add("2");
+        tmpList.add("3");
+        for (String item : tmpList){
+            log.info("item=" + item);
+            tmpList.remove(item);
+        }
+        log.info("tmpList=" + tmpList.toString());
     }
 }

@@ -5,7 +5,7 @@
         SELECT
             a.username,
             a.encryptedPassword,
-            a.`name`,
+            a.name,
             a.email,
             a.mobile,
             a.avatar,
@@ -20,4 +20,7 @@
         WHERE
             a.username = #{username} AND a.isEffective = 1
     </select>
+    <insert id="insetUsername">
+        INSERT INTO ofuser(username,name) VALUES(#{username},#{name})
+    </insert>
 </mapper>

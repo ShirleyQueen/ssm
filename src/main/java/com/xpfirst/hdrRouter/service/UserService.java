@@ -1,6 +1,7 @@
 package com.xpfirst.hdrRouter.service;
 
 import com.xpfirst.hdrRouter.entity.User;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Copyright (C) 2017/5/10 北京学信科技有限公司
@@ -21,4 +22,13 @@ public interface UserService {
      */
     public User findUserByUsername(String username);
 
+
+    /**
+     * @Author: Gaojindan
+     * @Create: 2018/1/29 下午1:31
+     * @Des: 添加一个用户
+     * @Param:
+     * @Return:
+     */
+    public void insetUsername(@RequestParam("User") User user);
 }

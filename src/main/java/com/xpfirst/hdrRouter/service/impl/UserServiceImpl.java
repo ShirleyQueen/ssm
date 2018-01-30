@@ -6,6 +6,9 @@ import com.xpfirst.hdrRouter.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Copyright (C) 2017/5/10 北京学信科技有限公司
@@ -31,5 +34,19 @@ public class UserServiceImpl implements UserService {
      */
     public User findUserByUsername(String username){
         return userMapper.findUserByUsername(username);
+    }
+
+
+    /**
+     * @Author: Gaojindan
+     * @Create: 2018/1/29 下午1:31
+     * @Des: 添加一个用户
+     * @Param:
+     * @Return:
+     */
+    public void insetUsername(User user){
+        //添加一个用户
+        CopyOnWriteArrayList arrayList = new CopyOnWriteArrayList();
+        userMapper.insetUsername(user);
     }
 }

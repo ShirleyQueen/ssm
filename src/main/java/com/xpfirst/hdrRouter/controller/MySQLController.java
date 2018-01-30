@@ -31,10 +31,11 @@ public class MySQLController {
         return new ModelAndView("mysql/index");
     }
     @RequestMapping(value="/rollback")
-    public ModelAndView login(@RequestParam(value = "username", required = true) String username,
-                              ModelMap modelMap){
-        User user = userService.findUserByUsername(username);
-        modelMap.put("user", user);
+    public ModelAndView rollback(){
+
+        User user = new User();
+        user.setUsername("100009");
+        userService.insetUsername(user);
         return new ModelAndView("mysql/index");
     }
 }

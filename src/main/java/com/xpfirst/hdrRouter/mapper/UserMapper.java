@@ -23,4 +23,13 @@ public interface UserMapper {
      * @date 2017/5/10 18:59
      */
     public User findUserByUsername(@RequestParam("username") String username);
+
+    /**
+    * @Author: Gaojindan
+    * @Create: 2018/1/29 下午1:31
+    * @Des: 添加一个用户
+    * @Param:
+    * @Return:
+    */
+    public void insetUsername(@RequestParam("User") User user);
 }
