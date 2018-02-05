@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 2017/5/10     kyq                       v1.0.0        create
  */
 @Repository
-public interface UserMapper {
+public interface UserDao {
 
     /**
      * 根据学信ID查询用户信息

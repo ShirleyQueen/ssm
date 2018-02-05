@@ -1,6 +1,6 @@
 package com.xpfirst.hdrRouter.service.impl;
 
-import com.xpfirst.hdrRouter.dao.UserMapper;
+import com.xpfirst.hdrRouter.dao.UserDao;
 import com.xpfirst.hdrRouter.service.UserService;
 import com.xpfirst.hdrRouter.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserDao userMapper;
 
     /**
      * 根据学信ID查询用户信息
