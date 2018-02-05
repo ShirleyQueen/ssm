@@ -1,6 +1,6 @@
-package com.xpfirst.hdrRouter.controller;
+package com.xpfirst.hdrRouter.action;
 
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import com.xpfirst.hdrRouter.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**

@@ -1,12 +1,11 @@
 package com.xpfirst.hdrRouter.service.impl;
 
-import com.xpfirst.hdrRouter.mapper.UserMapper;
+import com.xpfirst.hdrRouter.dao.UserMapper;
 import com.xpfirst.hdrRouter.service.UserService;
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

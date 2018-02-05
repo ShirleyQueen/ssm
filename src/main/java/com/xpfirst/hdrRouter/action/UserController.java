@@ -1,7 +1,7 @@
-package com.xpfirst.hdrRouter.controller;
+package com.xpfirst.hdrRouter.action;
 
 
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import com.xpfirst.hdrRouter.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

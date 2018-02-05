@@ -11,7 +11,7 @@
  * 2013-6-14     李大鹏                       v1.0.0        create
  *
  */
-package com.xpfirst.hdrRouter.entity;
+package com.xpfirst.hdrRouter.model;
 
 import java.io.Serializable;
 import java.util.Date;

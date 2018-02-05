@@ -1,6 +1,6 @@
-package com.xpfirst.hdrRouter.mapper;
+package com.xpfirst.hdrRouter.dao;
 
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 

@@ -1,7 +1,7 @@
 package com.xpfirst.hdrRouter.service;
 
 import com.xpfirst.hdrRouter.util.BaseSpringTestCase;
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

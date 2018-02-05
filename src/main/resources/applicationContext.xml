@@ -45,7 +45,7 @@
     <bean id="springUtils" class="com.xpfirst.hdrRouter.util.SpringUtils"></bean>
     <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.xpfirst.hdrRouter.mapper" />
+        <property name="basePackage" value="com.xpfirst.hdrRouter.dao" />
     </bean>
 
     <!-- 使用注解的包，包括子集 -->

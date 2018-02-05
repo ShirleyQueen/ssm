@@ -1,11 +1,9 @@
-package com.xpfirst.hdrRouter;
+package com.xpfirst.hdrRouter.Test;
 
-import net.sf.json.JSONObject;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,7 +14,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -89,5 +86,73 @@ public class TEST {
             tmpList.remove(item);
         }
         log.info("tmpList=" + tmpList.toString());
+    }
+    @Test
+    public void maopaobaixu(){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(9);
+        list.add(2);
+        list.add(1);
+        list.add(4);
+        list.add(3);
+        list.add(6);
+        list.add(5);
+        list.add(8);
+        list.add(7);
+        list.add(10);
+        for (int i = 0; i < list.size() - 1; i++) {
+            log.info("i="+i);
+            for (int j = 1; j < list.size() - i; j++) {
+                Integer a;
+                log.info("j="+j);
+//                log.info("j-1="+list.get(j - 1));
+//                log.info("j="+list.get(j));
+                if ((list.get(j - 1)).compareTo(list.get(j)) > 0) { // 比较两个整数的大小
+                    a = list.get(j - 1);
+                    list.set((j - 1), list.get(j));
+                    list.set(j, a);
+                }
+            }
+            log.info("list="+list.toString());
+        }
+        for (Integer s : list) {
+            System.out.println(s.intValue());
+        }
+    }
+
+    @Test
+    public void InsertSort(){
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(9);
+        list.add(2);
+        list.add(1);
+        list.add(4);
+        list.add(3);
+        list.add(6);
+        list.add(5);
+        list.add(8);
+        list.add(7);
+        list.add(10);
+
+        int i, j;
+        int n = list.size();
+        int target;
+
+        //假定第一个元素被放到了正确的位置上
+        //这样，仅需遍历1 - n-1
+        for (i = 1; i < n; i++)
+        {
+            j = i;
+            target = list.get(i);
+
+            while (j > 0 && target < list.get(j - 1))
+            {
+                list.set(j,list.get(j - 1));
+                j--;
+            }
+
+            list.set(j,target);
+            log.info("list="+list.toString());
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.xpfirst.hdrRouter.service;
 
-import com.xpfirst.hdrRouter.entity.User;
+import com.xpfirst.hdrRouter.model.User;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**

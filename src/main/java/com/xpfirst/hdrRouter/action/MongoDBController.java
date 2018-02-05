@@ -1,4 +1,4 @@
-package com.xpfirst.hdrRouter.controller;
+package com.xpfirst.hdrRouter.action;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

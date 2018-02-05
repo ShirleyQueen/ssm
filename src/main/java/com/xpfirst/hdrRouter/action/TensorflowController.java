@@ -1,4 +1,4 @@
-package com.xpfirst.hdrRouter.controller;
+package com.xpfirst.hdrRouter.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,11 +18,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import org.tensorflow.DataType;
-import org.tensorflow.Graph;
 import org.tensorflow.Output;
-import org.tensorflow.Session;
-import org.tensorflow.Tensor;
-import org.tensorflow.TensorFlow;
 
 /**
  * Created by xuexin on 2017/7/31.
