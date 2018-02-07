@@ -32,7 +32,7 @@ import static com.mongodb.client.model.Filters.*;
 @RequestMapping(value = "mongodb")
 public class MongoDBController {
 
-    private MongoClientURI connectionString = new MongoClientURI("mongodb://gaojindan:gaojindan001@121.40.180.70:27017/gaojindandb");
+    private MongoClientURI connectionString = new MongoClientURI("mongodb://devuser:devpassword@121.40.180.70:27017/devmongodb");
     private MongoClient mongoClient = new MongoClient(connectionString);
     private MongoDatabase database = mongoClient.getDatabase("gaojindandb");
     private MongoCollection<Document> paperColl = database.getCollection("xsl_paper");
