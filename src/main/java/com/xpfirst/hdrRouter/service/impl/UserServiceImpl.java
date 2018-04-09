@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
      * @version 1.0
      * @date 2017/5/10 18:59
      */
+    @Override
     public User findUserByUsername(String username){
         return userMapper.findUserByUsername(username);
     }
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
      * @Param:
      * @Return:
      */
+    @Override
     public void insetUsername(User user){
         //添加一个用户
         CopyOnWriteArrayList arrayList = new CopyOnWriteArrayList();

@@ -1,4 +1,4 @@
-package com.xpfirst.hdrRouter.model;
+package com.xpfirst.hdrRouter.test;
 
 /**
  * Copyright (C) 北京学信科技有限公司
@@ -8,4 +8,8 @@ package com.xpfirst.hdrRouter.model;
  * @Create: 2018/2/2 上午11:37
  **/
 public class TAbstract2 {
+}
+
+class Test2 {
+
 }

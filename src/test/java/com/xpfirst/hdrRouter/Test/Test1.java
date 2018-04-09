@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.*;
+
 /**
  * Copyright (C) 北京学信科技有限公司
  *
@@ -22,5 +24,33 @@ public class Test1 {
         }
         public void testStatic1() {
         }
+//        洗牌算法
+        @Test
+        public void xipai(){
+                List<Integer> cards = new ArrayList<>();
+                for (int i = 0; i < 52; i++){
+                        cards.add(i);
+                }
+                List<Integer> newCards = new ArrayList<>();
+                for (int i = 0; i < 52; i++){
+                        Double tmpD = Math.random();
+                        System.out.print("\n Math.random() =" + tmpD);
+                        int index = (int)(tmpD * 52);
+                        Integer tmpInt = cards.get(index);
+                        Integer tmpI = cards.get(i);
+                        cards.set(i,tmpInt);
+                        cards.set(index,tmpI);
+                }
+                System.out.print("\n fasdf=" + cards.toString());
+        }
 
+        public void testCollection(){
+                List<Integer> tmpList = new ArrayList<>();
+                Set<Integer> tmpSet = new HashSet<>();
+                Map<String,String> tmpMap = new HashMap<>();
+
+                Collections.sort(tmpList);
+                TreeSet<Integer> tmptset = new TreeSet<>();
+                tmptset.wait();
+        }
 }

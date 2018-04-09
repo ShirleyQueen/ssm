@@ -1,4 +1,6 @@
-package com.xpfirst.hdrRouter.model;
+package com.xpfirst.hdrRouter.test;
+
+import com.xpfirst.hdrRouter.service.SSMService;
 
 /**
  * Copyright (C) 北京学信科技有限公司
@@ -7,6 +9,6 @@ package com.xpfirst.hdrRouter.model;
  * @Author: Gaojindan
  * @Create: 2018/2/2 上午11:36
  **/
-abstract class TAbstract {
+abstract class AbstractSSM {
     abstract String getName();
 }
