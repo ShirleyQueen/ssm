@@ -43,14 +43,21 @@ public class Test1 {
                 }
                 System.out.print("\n fasdf=" + cards.toString());
         }
-
+        @Test
         public void testCollection(){
-                List<Integer> tmpList = new ArrayList<>();
-                Set<Integer> tmpSet = new HashSet<>();
-                Map<String,String> tmpMap = new HashMap<>();
+                String tmpHh = "12";
+                System.out.print("tmphh = " + tmpHh.hashCode());
 
-                Collections.sort(tmpList);
-                TreeSet<Integer> tmptset = new TreeSet<>();
-                tmptset.wait();
+                HashMap<String,String> tmpMap = new HashMap<>();
+                String tmpstr = tmpMap.put("111","2222");
+                System.out.print("\ntmpstr =" + tmpstr);
+                tmpstr = tmpMap.put("111","333");
+                System.out.print("\ntmpstr =" + tmpstr);
+                tmpstr = tmpMap.put("111","444");
+                System.out.print("\ntmpstr =" + tmpstr);
+                tmpstr = tmpMap.put("111","22555522");
+                System.out.print("\ntmpstr =" + tmpstr);
+                System.out.print("\ntmp =" + tmpMap.toString());
+
         }
 }
