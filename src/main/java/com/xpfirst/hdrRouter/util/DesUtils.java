@@ -25,7 +25,7 @@ import java.security.spec.AlgorithmParameterSpec;
 
 public class DesUtils {
     private static final Logger Log = LoggerFactory.getLogger(DesUtils.class);
-
+    private static DesUtils signleDes = null;
     private static Key key = null;
 
     static {

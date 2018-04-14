@@ -31,9 +31,20 @@ public class UserController {
 
     @RequestMapping(value="login")
     public ModelAndView login(@RequestParam(value = "username", required = true) String username,
-                              ModelMap modelMap){
+                              ModelMap modelMap) {
+        log.info("fasdfas");
         User user = userService.findUserByUsername(username);
         modelMap.put("user", user);
         return new ModelAndView("index");
     }
+//    @RequestMapping(value="login")
+//    public String login(@RequestParam String username) {
+//        // case 1
+//        System.out.println("throw an exception");
+//
+//        // case 2
+//        System.out.println("test OK");
+//        return "dddddddd";
+//    }
+
 }
