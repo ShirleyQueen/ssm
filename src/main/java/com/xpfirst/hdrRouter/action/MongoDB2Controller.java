@@ -34,7 +34,7 @@ import java.util.Map;
 @RequestMapping(value = "mongodb2")
 public class MongoDB2Controller {
 
-    private MongoClientURI connectionString = new MongoClientURI("mongodb://devuser:devpassword@121.40.180.70:27017/devmongodb");
+    private MongoClientURI connectionString = new MongoClientURI("mongodb://root:5211314@10.10.1.169:27017/admin");
     private MongoClient mongoClient = new MongoClient(connectionString);
     private MongoDatabase database = mongoClient.getDatabase("gaojindandb");
     private MongoCollection<Document> paperColl = database.getCollection("xsl_paper");
