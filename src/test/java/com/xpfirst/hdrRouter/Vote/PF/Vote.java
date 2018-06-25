@@ -102,7 +102,7 @@ public class Vote {
 //    public void loginTo(String phone, String pwd)
     public void loginTo()
     {
-        String phone = "nanjizhiyin";
+        String phone = "18511074294";
         //获取验证码
         String pwd = "5211314";
         String phoneStr = "{phone:'"+phone+"',pwd:'"+pwd+"',loginIp:'120.134.2.3'}"; // java.net class
@@ -124,6 +124,7 @@ public class Vote {
 
             //发送Post,并返回一个HttpResponse对象
             String result = EntityUtils.toString(response.getEntity());
+            log.info("================= > result" + result);
 
             JSONObject jObject = JSON.parseObject(result);
             Integer code = jObject.getInteger("code");

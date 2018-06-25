@@ -18,6 +18,7 @@
 <div><a href="<%=ctx%>/nunjucks/list">nunjucks</a></div>
 <div><a href="<%=ctx%>/mongodb/">mongoDB</a></div>
 <div><a href="<%=ctx%>/mysql/">mysql</a></div>
+<div><a href="<%=ctx%>/pf/vote">pf投票</a></div>
 </body>
 
 <script>

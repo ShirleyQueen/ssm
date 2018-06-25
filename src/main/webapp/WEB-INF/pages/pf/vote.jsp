@@ -16,6 +16,11 @@
 <script src="<%=ctx%>/js/cryptoJS/components/enc-base64.js"></script>
 <script src="<%=ctx%>/js/cryptoJS/components/mode-ecb.js"></script>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script type=text/javascript src=https://www.fitness-partner.cn/bill/a/static/js/manifest.564a8f955d66a0a3c30b.js></script>
+<script type=text/javascript src=https://www.fitness-partner.cn/bill/a/static/js/vendor.24bc2f38b1b6d284a177.js></script>
+<script type=text/javascript src=https://www.fitness-partner.cn/bill/a/static/js/app.78adc40e138ae08008ea.js></script>
+
 <script>
     //DES 解密 加密
     function encryptByDES(message) {
@@ -165,13 +170,14 @@
 
 
     //给一个人投票
-    function login(service,phone,pwd) {
+    function login() {
 
-        var params = '{phone:"'+phone+'",pwd:"'+pwd+'",deviceType:"0"}';
-        console.log("params="+params);
-        params = getparams('login',params);
-        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+params;
+//        var params = '{phone:"'+phone+'",pwd:"'+pwd+'",deviceType:"0"}';
+//        console.log("params="+params);
+//        params = getparams('login',params);
+//        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+params;
 
+        var url = "https://www.fitness-partner.cn/jianshen/ssln/client/service?a=eU8n%2BCpjUmw=&t=klsOfZoxqsXs4SaCEtZ8IIBYd8AKalYJNkcs0cpGXXegwmuSqkle/w==&timestamp=h1Cgnr4eQelG2iXTmUUhRA==&params=kHdMpSzgez3%2BHJ%2Bce2p1CCGneTP61QICGNygkMqhiW85OBFfeHeE8Ehf3zsFRZo2rVwOqTBmJJk=&sign=d175bb7eca8ae00e5e6b25d06d00f278";
         $.ajax({
             url:url,
             success:function(result){
@@ -218,7 +224,7 @@
 //    voteToUser("serviceActivity",activityId,voteId,voteUserId);
 
     //登录
-//    login("service","18518763071","5211314");
+    login("service","18518763071","5211314");
 
 </script>
 </html>
