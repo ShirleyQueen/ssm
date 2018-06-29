@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PF投票项目</title>
 </head>
 
 <script src="<%=ctx%>/js/angular-0.10.0.js"></script>
@@ -55,6 +55,7 @@
 
 </div>
 </body>
+<button onclick="login()">投票</button>
 <script>
     function getToken() {
         var token = '';
@@ -177,7 +178,7 @@
 //        params = getparams('login',params);
 //        var url = "http://www.fitness-partner.cn/jianshen/ssln/client/"+service+"?"+params;
 
-        var url = "https://www.fitness-partner.cn/jianshen/ssln/client/service?a=eU8n%2BCpjUmw=&t=klsOfZoxqsXs4SaCEtZ8IIBYd8AKalYJNkcs0cpGXXegwmuSqkle/w==&timestamp=h1Cgnr4eQelG2iXTmUUhRA==&params=kHdMpSzgez3%2BHJ%2Bce2p1CCGneTP61QICGNygkMqhiW85OBFfeHeE8Ehf3zsFRZo2rVwOqTBmJJk=&sign=d175bb7eca8ae00e5e6b25d06d00f278";
+        var url = "https://www.fitness-partner.cn/jianshen/ssln/client/serviceActivity?a=Bc6uYgfZr5Y=&t=Qf6tQtCF3Aw9j74jGGPpPIvOHsxMz8pTzXY0NLnq04%2BgwmuSqkle/w==&timestamp=fH5hBbN7djtl11fvobkiKQ==&params=sfE3XwfDk4nxhzvfKz8o%2BjP25VGysNE4diLXl4hbGcQ3H5rlZ7SQC8J1YYuPXKpOmQOynJ/weOsoOwWrkQov%2B8d8CSB1nHh%2B3jcgIWO3dsqIOZ3E6ApPG2XpzLQdvBYZ&sign=754e5139c49dd23652f0397fb49bedd0";
         $.ajax({
             url:url,
             success:function(result){
@@ -190,6 +191,7 @@
 //                console.log(textStatus);
 
                 var responseText = XMLHttpRequest.responseText;
+                $("#list").html(responseText);
 //                console.log(responseText);
 
                 responseText = responseText.replace(/[\r\n]/g,'');
@@ -213,7 +215,7 @@
 
     //获取此活动的人员列表
     var activityId = "4abe6d1f9d6e4b3aaefbdd75b1fb8e33";
-    getUserList("serviceActivity",activityId,1,50,voteUserId);
+//    getUserList("serviceActivity",activityId,1,50,voteUserId);
 //
 //    //被投票人
 //    //浪花
@@ -224,7 +226,8 @@
 //    voteToUser("serviceActivity",activityId,voteId,voteUserId);
 
     //登录
-    login("service","18518763071","5211314");
+//    login("service","18518763071","5211314");
+//    login();
 
 </script>
 </html>
